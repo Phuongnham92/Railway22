@@ -1,103 +1,104 @@
+-- tao database 
 CREATE DATABASE IF NOT EXISTS testing_system; 
-DROP TABLE IF EXISTS Department,
-Position,
-`Account`,
-`Group`,
-GroupAccount,
-TypeQuestion,
-CategoryQuestion,
-Question,
-Answer,
-Exam,
-ExamQuestion;
+DROP TABLE IF EXISTS department,
+position,
+`account`,
+`group`,
+group_account,
+type_question,
+category_question,
+question,
+answer,
+exam,
+exam_question;
 
-CREATE TABLE Department
+CREATE TABLE department
 	(
-    Department_ID	INT AUTO_INCREMENT PRIMARY KEY,
-	Department_Name	VARCHAR(100)
+    department_id	INT AUTO_INCREMENT PRIMARY KEY,
+	department_name	VARCHAR(100)
     );
     
-CREATE TABLE Position
+CREATE TABLE position
 (
-	Position_ID INT AUTO_INCREMENT PRIMARY KEY,
-	Position_Name	ENUM("Dev","Test","Scrum Master","PM")
+	position_id INT AUTO_INCREMENT PRIMARY KEY,
+	position_name	ENUM("Dev","Test","Scrum Master","PM")
     );
     
-CREATE TABLE `Account`
+CREATE TABLE `account`
 (
-	Account_ID	INT AUTO_INCREMENT PRIMARY KEY,
-    Email	VARCHAR(100),
-	Username	VARCHAR(100),
-    FullName	VARCHAR(100),
-    Department_ID INT,
-    Position_ID	INT,
-    CreateDate	DATE
+	account_id	INT AUTO_INCREMENT PRIMARY KEY,
+    email	VARCHAR(100),
+	user_name	VARCHAR(100),
+    full_name	VARCHAR(100),
+    department_id INT,
+    position_id	INT,
+    create_date	DATE
     );
     
-CREATE TABLE `Groups`
+CREATE TABLE `groups`
 (
-	Group_ID	INT AUTO_INCREMENT PRIMARY KEY,
-	Group_Name	VARCHAR(100),
-	Creator_ID	INT(100),
-	Create_Date	INT(100)
+	group_id	INT AUTO_INCREMENT PRIMARY KEY,
+	group_name	VARCHAR(100),
+	creator_id	INT(100),
+	create_date	INT(100)
     );
     
-CREATE TABLE GroupAccount
+CREATE TABLE group_account
 	(
-	Group_ID	INT AUTO_INCREMENT PRIMARY KEY,
-	Account_ID INT,
-	Join_Date	DATE,
-    PRIMARY KEY(Group_ID, Account_ID)
+	group_id	INT AUTO_INCREMENT PRIMARY KEY,
+	account_id	INT,
+	join_date	DATE,
+    PRIMARY KEY(group_id, account_id)
     );
     
-CREATE TABLE TypeQuestion
+CREATE TABLE type_question
 	(
-    TypeID	INT AUTO_INCREMENT PRIMARY KEY,
-    TypeName	ENUM("essay","multiple-choice")
+    type_id	INT AUTO_INCREMENT PRIMARY KEY,
+    type_name	ENUM("essay","multiple-choice")
   );
   
-CREATE TABLE CategoryQuestion
+CREATE TABLE category_question
 	(
-	CategoryID INT 
+	category_id INT 
     AUTO_INCREMENT PRIMARY KEY,
-	CategoryName	VARCHAR(100)
+	category_name	VARCHAR(100)
     );
  
-CREATE TABLE Question
+CREATE TABLE question
 	(
-	Question_ID INT AUTO_INCREMENT PRIMARY KEY,
-	Content TEXT,
-	Category_ID	VARCHAR(100),
-	Type_ID INT,
-	Creator_ID	INT,
-	Create_Date	DATE
+	question_id INT AUTO_INCREMENT PRIMARY KEY,
+	content TEXT,
+	category_id	VARCHAR(100),
+	type_id INT,
+	creator_id	INT,
+	create_date	DATE
     );
     
- CREATE TABLE Answer
+ CREATE TABLE answer
  (
-	Answer_ID	INT 
+	answer_id	INT 
     AUTO_INCREMENT PRIMARY KEY,
-	Content	TEXT(100),
-	Question_ID	INT,
-	isCorrect BINARY
+	content	TEXT(100),
+	question_id	INT,
+	iscorrect BINARY
     );
     
-CREATE TABLE Exam
+CREATE TABLE exam
 	(
-    ExamID	INT AUTO_INCREMENT PRIMARY KEY,
-	`Code`	CHAR(10),
-	Title	VARCHAR(100),
-	Category_ID	INT,
- 	Duration	INT,
- 	Creator_ID	INT,
- 	Create_Date	DATE
+    exam_id	INT AUTO_INCREMENT PRIMARY KEY,
+	`code`	CHAR(10),
+	title	VARCHAR(100),
+	category_id	INT,
+ 	duration	INT,
+ 	creator_id	INT,
+ 	create_date	DATE
     );
 
-CREATE TABLE ExamQuestion
+CREATE TABLE exam_question
 	(
-    Exam_ID	INT,
-    Question_ID	INT,
-    PRIMARY KEY("Exam_ID","Question_ID")
+    exam_id	INT,
+    question_id	INT,
+    PRIMARY KEY(`exam_id`,`question_id`)
     );
     
     
