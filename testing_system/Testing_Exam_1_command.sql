@@ -44,5 +44,19 @@ CALL	xoa_order_cancel;
 
 -- 5. Viết 1 thủ tục (có CustomerID parameter) để in ra thông tin của các đơn hàng đã đặt hàng bao gồm: tên của khách hàng, mã đơn hàng, số lượng oto 
 -- và tên hãng sản xuất.
+DROP PROCEDURE IF EXISTS da_dat_hang;
+DELIMITER $$
+CREATE PROCEDURE da_dat_hang(IN in_customer_id TINYINT)
+BEGIN 
+SELECT c.`name`, co.order_id, car.maker, co.mount
+FROM customers c
+JOIN  car_order co
+ON c.customer_id=co.customer_id
+JOIN cars car
+ON car.car_id=co.car_id
+WHERE co.customer_id= in_customer_id;
+END$$
+DELIMITER ;
+CALL da_dat_hang(2);
 -- 6. Viết trigger để tránh trường hợp người dụng nhập thông tin không hợp lệ 
 -- vào database (DeliveryDate < OrderDate + 15).
