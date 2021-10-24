@@ -15,9 +15,32 @@ GROUP BY	c.customer_id
 ORDER BY	co.amount ASC;
 
 -- 3. Viết hàm (không có parameter) trả về tên hãng sản xuất đã bán được nhiều oto nhất trong năm nay.
-
+DROP PROCEDURE IF EXISTS MAX_SALE_CAR;
+DELIMITER $$
+CREATE PROCEDURE	MAX_SALE_CAR()
+BEGIN	
+	SELECT		c.car_id, c.maker,COUNT(co.order_id) sl
+    FROM		cars c
+    INNER JOIN	car_orders co
+    ON			c.car_id=co.car_id
+    WHERE		year(delivery_date)=year(now()) AND co.`status`=1
+    GROUP BY	c.maker
+    ORDER BY COUNT(co.order_id) DESC
+    LIMIT 1;
+END$$
+DELIMITER ;
+CALL	MAX_SALE_CAR;
                         
 -- 4. Viết 1 thủ tục (không có parameter) để xóa các đơn hàng đã bị hủy của những năm trước. In ra số lượng bản ghi đã bị xóa.
+DROP PROCEDURE IF EXISTS xoa_order_cancel;
+DELIMITER $$
+CREATE PROCEDURE xoa_order_cancel()
+BEGIN
+	DELETE FROM	car_orders
+    WHERE		`status`=2 AND	year(order_date)!=year(now());
+END$$
+DELIMITER ;
+CALL	xoa_order_cancel;
 
 -- 5. Viết 1 thủ tục (có CustomerID parameter) để in ra thông tin của các đơn hàng đã đặt hàng bao gồm: tên của khách hàng, mã đơn hàng, số lượng oto 
 -- và tên hãng sản xuất.
