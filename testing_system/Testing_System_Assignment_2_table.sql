@@ -78,17 +78,17 @@ VALUES							('Java'),
                                 ('ADO.NET');
                                 
 	 -- Add data `question`
-INSERT INTO `questions`	(content,	category_id,	type_id,	creator_id)
-VALUES					('java Q',		1		,	1,			1				),
-						('ASP.NET Q',	4		,	2,			2			),
-						('SQL Q',		10		,	2,			3				),
-                        ('Postman Q',	8		,	1,			4				),
-						('ruby Q',		5		,	2,			5				),
-						('python Q',	9		,	2,			6				),
-						('C++ Q',		2		,	1,			7				),
-						('C Sharp Q',	3		,	1,			8				),
-						('PHP Q',		7		,	2,			9				),
-						('ADO.NET Q',	6		,	1,			10				);
+INSERT INTO `questions`	(content,	category_id,	type_id,	creator_id,		create_date)
+VALUES					('java Q',		1		,	1,			1		,'2021-02-20'		),
+						('ASP.NET Q',	4		,	1,			2		,'2021-09-02'		),
+						('SQL Q',		10		,	2,			3		,'2021-10-10'		),
+                        ('Postman Q',	8		,	1,			4		,'2021-10-10'		),
+						('ruby Q',		5		,	2,			5		,'2021-09-02'		),
+						('python Q',	9		,	2,			6		,'2021-02-20'		),
+						('C++ Q',		2		,	1,			7		,'2021-09-02'		),
+						('C Sharp Q',	3		,	1,			8		,'2021-10-10'		),
+						('PHP Q',		7		,	2,			9		,'2021-10-10'		),
+						('ADO.NET Q',	6		,	1,			10		,'2021-09-02'		);
                     
 	-- Add data `answer`
 INSERT INTO `answers` (content,		question_id,	iscorrect)

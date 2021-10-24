@@ -81,7 +81,7 @@ CREATE TABLE questions
 	category_id		TINYINT UNSIGNED,
 	type_id 		TINYINT UNSIGNED,
 	creator_id		INT UNSIGNED,
-	create_date		DATETIME DEFAULT now(),
+	create_date		DATETIME,
     FOREIGN KEY(type_id) REFERENCES type_questions(type_id),
     FOREIGN KEY(category_id) REFERENCES category_questions(category_id),
     FOREIGN KEY(creator_id) REFERENCES `accounts`(account_id)
